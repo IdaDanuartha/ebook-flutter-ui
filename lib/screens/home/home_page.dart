@@ -45,6 +45,40 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget searchField() {
+      return Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: 30
+        ),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: "Find your favorite book...",
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            fillColor: greyColorSearchField,
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(12))
+            ),
+            contentPadding: EdgeInsets.all(18),
+            suffixIcon: InkWell(
+              onTap: () {},
+              child: Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: greenColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12)
+                  )
+                ),
+                child: Icon(Icons.search_rounded, color: whiteColor,),              
+              ),
+            )
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: ListView(
         children: [
@@ -59,7 +93,9 @@ class HomePage extends StatelessWidget {
               )
             ),
             child: Column(children: [
-              header()
+              header(),
+              SizedBox(height: 30),
+              searchField()
             ],),
           )
         ],

@@ -3,9 +3,23 @@ import 'package:ebook_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<String> _categories = [
+    'All Books',
+    'Comic',
+    'Novel',
+    'Manga',
+    'Fairy Tales',
+  ];
+
+  int _isSelected = 0;
   @override
   Widget build(BuildContext context) {
     Widget header() {
@@ -64,7 +78,8 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       color: greenColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(12))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(12))),
                   child: Icon(
                     Icons.search_rounded,
                     color: whiteColor,
@@ -103,6 +118,39 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget categories(int index) {
+      return InkWell(
+        onTap: () {
+          setState(() {
+            _isSelected = index;
+          });
+        },
+        child: Container(
+          margin: EdgeInsets.only(top: 30, right: 12),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          decoration: BoxDecoration(
+              color: _isSelected == index ? greenColor : transparentColor,
+              borderRadius: BorderRadius.circular(6)),
+          child: Text(_categories[index],
+              style: semiBoldText14.copyWith(color: _isSelected == index ? whiteColor : greyColor)),
+        ),
+      );
+    }
+
+    Widget listCategories() {
+      return SingleChildScrollView(
+        padding: EdgeInsets.only(left: 30),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: _categories
+              .asMap()
+              .entries
+              .map((MapEntry map) => categories(map.key))
+              .toList(),
+        ),
+      );
+    }
+
     return Scaffold(
         body: ListView(
       children: [
@@ -110,7 +158,8 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 30),
           decoration: BoxDecoration(
               color: whiteColor,
-              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30))),
+              borderRadius:
+                  const BorderRadius.only(bottomLeft: Radius.circular(30))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -128,7 +177,9 @@ class HomePage extends StatelessWidget {
               recentBook(),
             ],
           ),
-        )
+        ),
+        const SizedBox(height: 12),
+        listCategories(),
       ],
     ));
   }

@@ -1,3 +1,4 @@
+import 'package:ebook_app/screens/home/components/recent_book.dart';
 import 'package:ebook_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -75,51 +76,28 @@ class HomePage extends StatelessWidget {
     }
 
     Widget recentBook() {
-      return SingleChildScrollView(
+      return const SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Row(
           children: [
-            Container(
-              height: 150,
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  border: Border.all(color: borderColorRecentBook),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12)
-                  )
-                ),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/images/recentbook_1.png',
-                    width: 90,
-                  ),
-                  SizedBox(width: 10,),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'The Magic',
-                        style: semiBoldText14.copyWith(color: blackColor2),
-                      ),
-                      CircularPercentIndicator(
-                        radius: 50,
-                        lineWidth: 7,
-                        animation: true,
-                        percent: 0.5,
-                        progressColor: greenColor,
-                        reverse: true,
-                        circularStrokeCap: CircularStrokeCap.round,
-                      ),
-                      Text(
-                        '50% Completed',
-                        style: mediumText12.copyWith(color: greyColorRecentBook),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
+            RecentBook(
+              image: "assets/images/recentbook_1.png",
+              title: "The Magic",
+              percent: 50,
+            ),
+            SizedBox(width: 20),
+            RecentBook(
+              image: "assets/images/recentbook_2.png",
+              title: "The Martian",
+              percent: 75,
+            ),
+            SizedBox(width: 20),
+            RecentBook(
+              image: "assets/images/recentbook_1.png",
+              title: "Big Four",
+              percent: 28,
+            ),
           ],
         ),
       );
@@ -146,7 +124,7 @@ class HomePage extends StatelessWidget {
                     "Recent Book",
                     style: semiBoldText16.copyWith(color: blackColor),
                   )),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               recentBook(),
             ],
           ),

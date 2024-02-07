@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomePage extends StatefulWidget {
+  static const nameRoute = '/home';
   const HomePage({super.key});
 
   @override
@@ -128,8 +129,8 @@ class _HomePageState extends State<HomePage> {
           });
         },
         child: Container(
-          margin: EdgeInsets.only(top: 30, right: 12),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          margin: const EdgeInsets.only(top: 30, right: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           decoration: BoxDecoration(
               color: _isSelected == index ? greenColor : transparentColor,
               borderRadius: BorderRadius.circular(6)),
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget listCategories() {
       return SingleChildScrollView(
-        padding: EdgeInsets.only(left: 30),
+        padding: const EdgeInsets.only(left: 30),
         scrollDirection: Axis.horizontal,
         child: Row(
           children: _categories
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
     Widget trendingBook() {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Row(
           children: bookLists
               .asMap()
@@ -204,7 +205,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         trendingBook(),
-        SizedBox(height: 30,)
+        const SizedBox(height: 30,)
       ],
     ));
   }

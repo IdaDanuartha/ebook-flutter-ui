@@ -1,4 +1,6 @@
 import 'package:ebook_app/screens/bottom_navbar.dart';
+import 'package:ebook_app/screens/home/home_page.dart';
+import 'package:ebook_app/screens/home/pages/book_details.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,10 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-book App',
-      home: BottomNavbar(),
+      routes: {
+        BottomNavbar.nameRoute: (context) => BottomNavbar(),
+        HomePage.nameRoute: (context) => HomePage(),
+        BookDetail.nameRoute: (context) => BookDetail(),
+      },
     );
   }
 }

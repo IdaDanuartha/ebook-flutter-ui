@@ -18,7 +18,7 @@ class RecentBook extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
           border: Border.all(color: borderColorRecentBook),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(12)
           )
         ),
@@ -28,7 +28,7 @@ class RecentBook extends StatelessWidget {
             image,
             width: 90,
           ),
-          SizedBox(width: 10,),
+          const SizedBox(width: 10,),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

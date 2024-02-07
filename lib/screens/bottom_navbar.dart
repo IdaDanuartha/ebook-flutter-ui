@@ -6,6 +6,7 @@ import 'package:ebook_app/themes.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatefulWidget {
+  static const nameRoute = '/';
   const BottomNavbar({super.key});
 
   @override

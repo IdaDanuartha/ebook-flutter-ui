@@ -1,4 +1,6 @@
+import 'package:ebook_app/models/book.dart';
 import 'package:ebook_app/screens/home/components/recent_book.dart';
+import 'package:ebook_app/screens/home/components/trending_book.dart';
 import 'package:ebook_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -132,7 +134,8 @@ class _HomePageState extends State<HomePage> {
               color: _isSelected == index ? greenColor : transparentColor,
               borderRadius: BorderRadius.circular(6)),
           child: Text(_categories[index],
-              style: semiBoldText14.copyWith(color: _isSelected == index ? whiteColor : greyColor)),
+              style: semiBoldText14.copyWith(
+                  color: _isSelected == index ? whiteColor : greyColor)),
         ),
       );
     }
@@ -146,6 +149,20 @@ class _HomePageState extends State<HomePage> {
               .asMap()
               .entries
               .map((MapEntry map) => categories(map.key))
+              .toList(),
+        ),
+      );
+    }
+
+    Widget trendingBook() {
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        child: Row(
+          children: bookLists
+              .asMap()
+              .entries
+              .map((MapEntry map) => TrendingBook(info: bookLists[map.key],))
               .toList(),
         ),
       );
@@ -178,8 +195,16 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        const SizedBox(height: 12),
         listCategories(),
+        Padding(
+          padding: const EdgeInsets.only(left: 30, top: 30),
+          child: Text(
+            "Trending Now",
+            style: semiBoldText16.copyWith(color: blackColor),
+          ),
+        ),
+        trendingBook(),
+        SizedBox(height: 30,)
       ],
     ));
   }

@@ -7,11 +7,12 @@ class BookDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map data = ModalRoute.of(context)?.settings.arguments as Map;
 
     Widget header() {
       return Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        margin: EdgeInsets.only(top: 30, bottom: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        margin: const EdgeInsets.only(top: 30, bottom: 50),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -19,28 +20,31 @@ class BookDetail extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-                child: Icon(Icons.chevron_left_rounded, size: 30,)
+                child: const Icon(Icons.chevron_left_rounded, size: 30,)
             ),
             Text(
               "Book Details",
               style: semiBoldText20.copyWith(color: blackColor),
             ),
-            Icon(Icons.share_outlined)
+            const Icon(Icons.share_outlined)
           ],
         ),
       );
     }
 
     Widget bookImage() {
-      return Container(
-        height: 267,
-        width: 175,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage('assets/images/trending_book_1.png')
-          )
+      return Hero(
+        tag: data["imageUrl"],
+        child: Container(
+          height: 267,
+          width: 175,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage(data['imageUrl'])
+            )
+          ),
         ),
       );
     }
@@ -52,7 +56,7 @@ class BookDetail extends StatelessWidget {
         child: Container(
           height: 50,
           width: 50,
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             color: greenColor,
             shape: BoxShape.circle
@@ -66,7 +70,7 @@ class BookDetail extends StatelessWidget {
       return Container(
         height: 50,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
@@ -83,8 +87,8 @@ class BookDetail extends StatelessWidget {
     Widget infoDescription() {
       return Container(
         height: 60,
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        margin: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
           color: greyColorInfo,
           borderRadius: BorderRadius.circular(10)
@@ -119,11 +123,11 @@ class BookDetail extends StatelessWidget {
 
     Widget description() {
       return Container(
-        margin: EdgeInsets.only(top: 50),
-        padding: EdgeInsets.all(30),
+        margin: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.all(30),
         decoration: BoxDecoration(
           color: whiteColor,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30))
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(30))
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,29 +140,29 @@ class BookDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Enchantment',
+                        data["title"],
                         style: semiBoldText20.copyWith(color: blackColor2),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        'Guy Kawasaki',
+                        data["writers"],
                         style: mediumText14.copyWith(color: greyColor),
                       )
                     ],
                   ),
                 ),
-                SizedBox(width: 5,),
+                const SizedBox(width: 5,),
                 Text('Free Access', style: mediumText14.copyWith(
                   color: greenColor
                 ),)
               ],
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Text(
               'Description',
               style: semiBoldText14.copyWith(color: greenColor),
             ),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             Text(
               'Enchantment, as defined by bestselling business guru Guy Kawasaki, is not about manipulating people. It transform situations and relationship',
               style: regularText12.copyWith(color: greyColor),
